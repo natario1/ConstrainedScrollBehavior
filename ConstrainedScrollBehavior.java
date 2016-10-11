@@ -120,13 +120,14 @@ public class ConstrainedScrollBehavior extends AppBarLayout.ScrollingViewBehavio
                             widthUsed, heightMeasureSpec, heightUsed);
                 }
 
-                // When we use visibleHeight: all is OK.
-                //                            Scrolling content is very small and there's no real scroll.
                 // When we use availableHeight: (bc wcHeight is too much), all is OK.
                 //                              We will surely scroll until ABL is fully scrolled out.
                 // When we use wcHeight: There are some issues. We don't fit the whole availableHeight,
                 //                       but scroll events are forwarded to the ABL which scrolls itself.
-                //                       We must stop ABL scrolling when we are fully visible
+                //                       We must stop ABL scrolling when we are fully visible.
+                // When we use visibleHeight: Scrolling content is very small and there's no real scroll.
+                //                            But user can still drag the ABL directly.
+                //                            We must act too.
                 //
                 // -> ABL minHeight (=> scrollRange) must be redefined. It should be:
                 // - equal to availableHeight - finalHeight
@@ -134,7 +135,7 @@ public class ConstrainedScrollBehavior extends AppBarLayout.ScrollingViewBehavio
                 // To do this we set min height to the scrolling child, see AppBarLayout.getTotalScrollRange()
                 // for info.
                 // Note: scroll|exitUntilCollapsed flags are needed for this to work.
-                if (finalHeight == wcHeight) {
+                if (finalHeight != availableHeight) {
                     // Find the scrolling child
                     View view = findAppBarScrollingChild(header);
                     int ablMinHeight = Math.max(ablOriginalMinHeight, availableHeight - finalHeight);
