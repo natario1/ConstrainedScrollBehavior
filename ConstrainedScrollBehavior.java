@@ -71,6 +71,17 @@ public class ConstrainedScrollBehavior extends AppBarLayout.ScrollingViewBehavio
             final List<View> dependencies = parent.getDependencies(child);
             final AppBarLayout header = findAppBar(dependencies);
             if (header != null) {
+                
+                // TODO: If we had some height changes inside, at the end of the function we 
+                // will update the abl scroll range based on new height. However, for some reason,
+                // that won't work if the abl is fully expanded (offset == 0). Seems like it is not
+                // properly invalidated, even though we set the right value.
+                // This is a dirty workaround.
+                CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) header.getLayoutParams();
+                AppBarLayout.Behavior b = (AppBarLayout.Behavior) p.getBehavior();
+                if (b.getTopAndBottomOffset() == 0) {
+                    b.setTopAndBottomOffset(-1);
+                }
 
                 // Check original minHeight if needed.
                 if (ablOriginalMinHeight == -1) {
