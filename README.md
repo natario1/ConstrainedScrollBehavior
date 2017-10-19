@@ -9,7 +9,8 @@ completely visible.
 
 See http://stackoverflow.com/q/31117510/4288782 for example.
 
-####Notes
+### Notes
+
 For this to work, you need:
 - set this behavior to the scrolling view
 - have match_parent as height
