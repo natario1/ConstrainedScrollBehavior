@@ -15,5 +15,4 @@ For this to work, you need:
 - set this behavior to the scrolling view
 - have match_parent as height
 - have at least one of the AppBarLayout childs use the flags:
-
-`app:layout_scrollFlags="scroll|exitUntilCollapsed"`
+  `app:layout_scrollFlags="scroll|exitUntilCollapsed"`
