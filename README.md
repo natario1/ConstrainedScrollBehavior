@@ -1,10 +1,10 @@
 # ConstrainedScrollBehavior
 
-An AppBarLayout.ScrollingViewBehavior that adapts scrolling view height based on its content.
+An `AppBarLayout.ScrollingViewBehavior` that adapts scrolling view height based on its content.
 
-This is useful in conjunction with scrolling AppBarLayouts. With the default behavior, the 
-AppBarLayout keeps scrolling out of the screen even if the scrolling content is over.
-With ConstrainedScrollBehavior, no more offset is applied if the scrolling view is 
+This is useful in conjunction with scrolling `AppBarLayout`s. With the default behavior, the 
+`AppBarLayout` keeps scrolling out of the screen even if the scrolling content is over.
+With `ConstrainedScrollBehavior`, no more offset is applied if the scrolling view is 
 completely visible.
 
 See http://stackoverflow.com/q/31117510/4288782 for example.
